@@ -251,37 +251,40 @@ influence_upsample_on_moment_invariants (
 int 
 main(void)
 {
-    /**** test the influence of random downsample on eigen values of covaraince matrix ****/
-    influence_downsample_rand_on_covmat_eig(4000, 4, 1000);
+    // /**** test the influence of random downsample on eigen values of covaraince matrix ****/
+    // influence_downsample_rand_on_covmat_eig(4000, 4, 1000);
 
 
-    /**** test the influence of voxel grid downsample on eigen values of covaraince matrix ****/
-    influence_downsample_vg_on_covmat_eig(0.01, 5);
+    // /**** test the influence of voxel grid downsample on eigen values of covaraince matrix ****/
+    // influence_downsample_vg_on_covmat_eig(0.01, 5);
 
 
-    /**** test the influence of upsample on eigen values of covaraince matrix ****/
-    influence_upsample_on_covmat_eig(4);
+    // /**** test the influence of upsample on eigen values of covaraince matrix ****/
+    // influence_upsample_on_covmat_eig(4);
 
 
-    /**** test the influence of random downsample on moment invariants ****/
-    // influence_downsample_rand_on_moment_invariants(4000, 4, 1000);
+    // /**** test the influence of random downsample on moment invariants ****/
+    // // influence_downsample_rand_on_moment_invariants(4000, 4, 1000);
 
 
-    /**** test the influence of voxel grid downsample on moment invariants ****/
-    influence_downsample_vg_on_moment_invariants(0.01, 5);
+    // /**** test the influence of voxel grid downsample on moment invariants ****/
+    // influence_downsample_vg_on_moment_invariants(0.01, 5);
 
 
-    /**** test the influence of upsample on moment invariants ****/
-    influence_upsample_on_moment_invariants(4);
+    // /**** test the influence of upsample on moment invariants ****/
+    // influence_upsample_on_moment_invariants(4);
 
 
-    /**** build feature vector with different search radius for local features ****/
-    const std::vector<float> searchRadius { 0.08, 0.10, 0.12, 0.14, 0.16, 0.18, 0.20, 0.22};
-    for (auto & r : searchRadius)
-    {
-        getFeatureVector(r, true);
-    }
+    // /**** build training feature vector with different search radius ****/
+    // const std::vector<float> searchRadius { 0.08, 0.10, 0.12, 0.14, 0.16, 0.18, 0.20, 0.22};
+    // for (auto & r : searchRadius)
+    // {
+    //     getFeatureVector(r, true);
+    // }
 
+
+    /**** build test feature vector with search radius = 0.16m ****/
+    getFeatureVector(0.16, false);
 
     return 0;
 }
