@@ -51,13 +51,13 @@ def estimate_mutual_info ():
         scaler.fit_transform(dataset[:, :-1])
         # mutual_info of local features
         data_local = dataset[:, 10:-1]
-        mi = mutual_info_classif(data_local, target, 'auto')
+        mi = mutual_info_classif(data_local, target, 'auto', copy='true', n_neighbors=3)
         write_path = os.path.join(base_path, "mutual_info_local")
         write_file = os.path.join(write_path, file)
         np.savetxt(os.path.splitext(write_file)[0]+'_m.txt', mi)
         # mutual_info of global features
         data_global = dataset[:, 0:10]
-        mi = mutual_info_classif(data_global, target, 'auto')
+        mi = mutual_info_classif(data_global, target, 'auto', copy='true', n_neighbors=3)
         write_path = os.path.join(base_path, "mutual_info_global")
         write_file = os.path.join(write_path, file)
         np.savetxt(os.path.splitext(write_file)[0]+'_m.txt', mi)
