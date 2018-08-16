@@ -46,9 +46,11 @@ def estimate_mutual_info ():
             continue
         dataset = np.loadtxt(read_file)
         target = dataset[:, -1]
-        # feature scaling
+        # feature scaling and normalization
         scaler = preprocessing.StandardScaler(copy=False)
         scaler.fit_transform(dataset[:, :-1])
+        normalizer = preprocessing.Normalizer(norm='l2', copy=False)
+        normalizer.fit_transform(dataset[:, :-1])
         # mutual_info of local features
         data_local = dataset[:, 10:-1]
         mi = mutual_info_classif(data_local, target, 'auto', copy='true', n_neighbors=3)
