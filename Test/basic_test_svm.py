@@ -8,6 +8,13 @@ from sklearn import preprocessing
 from sklearn.externals import joblib
 import numpy as np  
 from sklearn import metrics
+import os
+import sys
+
+# get model file path
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(BASE_DIR)
+MODEL_DIR = ROOT_DIR + '/Training/svm.pkl'
 
 # load data for testing
 feature_matrix = np.loadtxt('/media/shao/TOSHIBA EXT/data_object_velodyne/feature_matrix_with_label/test/r_0.16.txt')
@@ -24,7 +31,7 @@ normalizer = preprocessing.Normalizer(norm='l2', copy=False)
 normalizer.fit_transform(data)
 
 # load the trained model
-clf = joblib.load('/home/shao/文档/VSCodeWS/Masterarbeit_Code/PointCloud_Classification/Training/svm.pkl')
+clf = joblib.load(MODEL_DIR)
 
 # prediction / test
 y_pred = clf.predict(data)
