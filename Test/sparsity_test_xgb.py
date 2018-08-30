@@ -9,6 +9,7 @@ import numpy as np
 from sklearn import metrics
 import os
 import sys
+# import datetime
 
 # get model file path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -39,3 +40,15 @@ print('f1 score = ', f1)
 prob = xgbc.predict_proba(data)
 log_loss = metrics.log_loss(target, prob, labels=np.array([0,1,2,3,4]))
 print('log loss = ', log_loss)
+
+# now_time = datetime.datetime.now()
+# with open("log_test_result.txt","a") as f:
+#     f.write("\n")
+#     f.write('----- {} -----'.format(str(now_time)))
+#     f.write("\n")
+#     f.write('accuracy {}'.format(str(score)))
+#     f.write("\n")
+#     f.write('confusion_matrix {}'.format(str(conf_matrix)))
+#     f.write("\n")
+#     f.write('log loss {}'.format(str(log_loss)))
+#     f.write("\n")
