@@ -61,9 +61,15 @@ params = {  'learning_rate':[0.1, 0.3, 0.5, 0.7, 0.9],
             'n_estimators':[10, 20, 40, 60, 100, 120],
         }
 fone_scorer = make_scorer(fbeta_score, beta=1, average='weighted')
-clf = GridSearchCV(
-    xgbc, params, scoring=fone_scorer,
-    n_jobs=4, cv=5, return_train_score=False, iid=True)
+clf = GridSearchCV (
+                        xgbc, 
+                        params, 
+                        scoring=fone_scorer,
+                        n_jobs=4, 
+                        cv=5, 
+                        return_train_score=False, 
+                        iid=True
+                    )
 clf.fit(data, target)
 
 # print important info
