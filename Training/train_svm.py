@@ -26,15 +26,15 @@ normalizer.fit_transform(data)
 
 # train svm using grid search
 fone_scorer = make_scorer(fbeta_score, beta=1, average='weighted')
-# params = {  'kernel':['rbf', 'linear'], 
-#             'C':[0.5, 1.0, 1.3, 1.5, 2.0, 2.1, 2.2, 2.3, 2.4], 
-#             'gamma':[0.5, 1.0, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
-#             }
-params = {'kernel':['rbf'], 'C':[2.3], 'gamma':[1.4]}
-svc = svm.SVC(probability=True)
+params = {  'kernel':['rbf', 'linear'], 
+            'C':[1.0, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6], 
+            'gamma':[0.5, 1.0, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
+            }
+# params = {'kernel':['rbf'], 'C':[2.3], 'gamma':[1.4]}
+svc = svm.SVC(probability=True, class_weight='balanced')
 clf = GridSearchCV(
     svc, params, scoring=fone_scorer,
-    n_jobs=5, cv=5, return_train_score=False, iid=True)
+    n_jobs=5, cv=5, return_train_score=False, iid=True, refit=True)
 clf.fit(data, target)
 
 # print important info
