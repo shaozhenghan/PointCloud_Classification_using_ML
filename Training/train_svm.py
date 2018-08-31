@@ -32,9 +32,16 @@ params = {  'kernel':['rbf', 'linear'],
             }
 # params = {'kernel':['rbf'], 'C':[2.3], 'gamma':[1.4]}
 svc = svm.SVC(probability=True, class_weight='balanced')
-clf = GridSearchCV(
-    svc, params, scoring=fone_scorer,
-    n_jobs=5, cv=5, return_train_score=False, iid=True, refit=True)
+clf = GridSearchCV (
+                        svc, 
+                        params, 
+                        scoring=fone_scorer,
+                        n_jobs=5, 
+                        cv=5, 
+                        return_train_score=False,
+                        iid=True, 
+                        refit=True
+                    )
 clf.fit(data, target)
 
 # print important info
