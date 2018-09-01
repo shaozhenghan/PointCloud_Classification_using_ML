@@ -52,13 +52,24 @@ xgbc = XGBClassifier(   num_class=5,
                         silent=0,
                         subsample=1
                     )
-params = {  'learning_rate':[0.1, 0.3, 0.5, 0.7, 0.9],
-            'min_child_weight':[1, 2, 3],
-            'max_depth':[4, 6, 8, 10],
-            'gamma':[0.1, 0.2, 0.3, 0.4],
-            'max_delta_step':[0, 1],
-            'reg_lambda':[1, 1.5, 2, 2.5, 3],
-            'n_estimators':[10, 20, 40, 60, 100, 120],
+# # coarse tune
+# params = {  'learning_rate':[0.1, 0.3, 0.5, 0.7, 0.9],
+#             'min_child_weight':[1, 2, 3],
+#             'max_depth':[4, 6, 8, 10],
+#             'gamma':[0.1, 0.2, 0.3, 0.4],
+#             'max_delta_step':[0, 1],
+#             'reg_lambda':[1, 1.5, 2, 2.5, 3],
+#             'n_estimators':[10, 20, 40, 60, 100, 120]
+#         }
+
+# fine tune
+params = {  'learning_rate':[0.9, 1.0, 1.1, 1.2, 1.4],  # optimal 1.0
+            'min_child_weight':[2],                     # optimal 2
+            'max_depth':[8, 9, 10],                     # optimal 9
+            'gamma':[0.07, 0.08, 0.09, 0.1],            # optimal 0.09
+            'max_delta_step':[0],                       # optimal 0
+            'reg_lambda':[3.3, 3.4, 3.5, 3.7, 3.9],     # optimal 3.4
+            'n_estimators':[10, 11, 12, 13, 14]         # optimal 13
         }
 fone_scorer = make_scorer(fbeta_score, beta=1, average='weighted')
 clf = GridSearchCV (
